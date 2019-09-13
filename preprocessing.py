@@ -158,7 +158,7 @@ def checksection_8lane(list_x,list_z,list_t):
     return sections
 
 
-def plot_map_4lane(list_x,list_z):
+def plot_map_4lane(list_x,list_z,sections):
     
     if (len(list_x) != len(list_z)):
         return -1
@@ -167,16 +167,21 @@ def plot_map_4lane(list_x,list_z):
     ax = fig.add_subplot(111)
     ax.set(xlim=[-800,1700],ylim=[-250,1200])
     plt.scatter(list_z,list_x,marker='.',lineWidth = 0.0001,edgecolor='none')
-    ax.plot(list_z,list_x)
+    ax.plot(list_z,list_x,label='Movement Track')
     ax.plot(np.linspace(184,184,1000),np.linspace(-250,1200,1000),color='g')
     ax.plot(np.linspace(226.478,226.478,1000),np.linspace(-250,1200,1000),color='g')
+    ax.plot(np.linspace(1000.96, 1000.96, 1000), np.linspace(-250, 1200, 1000), color='g')
     ax.plot(np.linspace(958.492,958.492,1000),np.linspace(-250,1200,1000),color='g')
     ax.plot(np.linspace(-800,1700,1000),np.linspace(15.679,15.679,1000),color='g')
+    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(-26.899, -26.899, 1000), color='g')
+    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(794.131, 794.131, 1000), color='g')
     ax.plot(np.linspace(-800,1700,1000),np.linspace(751.653,751.653,1000),color='g')
+    plt.title('OpenDS Scene Planform and Movement Track of Vehicle--4 lanes')
+    plt.legend()
     plt.show()
             
 
-def plot_map_8lane(list_x,list_z):
+def plot_map_8lane(list_x,list_z,sections):
     
     if (len(list_x) != len(list_z)): 
         return -1
@@ -185,18 +190,23 @@ def plot_map_8lane(list_x,list_z):
     ax = fig.add_subplot(111)
     ax.set(xlim=[-800,1700],ylim=[-250,1200])
     plt.scatter(list_z,list_x,marker='.',lineWidth = 0.0001,edgecolor='none')
-    ax.plot(list_z,list_x)
+    ax.plot(list_z,list_x,label='Movement Track')
     ax.plot(np.linspace(179.3,179.3,1000),np.linspace(-250,1200,1000),color='g')
     ax.plot(np.linspace(234.998,234.998,1000),np.linspace(-250,1200,1000),color='g')
     ax.plot(np.linspace(1272.637,1272.637,1000),np.linspace(-250,1200,1000),color='g')
+    ax.plot(np.linspace(1328.205, 1328.205, 1000), np.linspace(-250, 1200, 1000), color='g')
     ax.plot(np.linspace(-800,1700,1000),np.linspace(27.94,27.94,1000),color='g')
+    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(-27.628, -27.628, 1000), color='g')
     ax.plot(np.linspace(-800,1700,1000),np.linspace(1064.941,1064.941,1000),color='g')
+    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(1120.509, 1120.509, 1000), color='g')
+    plt.title('OpenDS Scene Planform and Movement Track of Vehicle--8 lanes')
+    plt.legend()
     plt.show()   
 
 
 def read_data():
     try:
-        file=open('carData_track1.txt',"r")
+        file=open('C:\\Users\\q4349\\Desktop\\827\\analyzerData\\analyzerData\\p2\\2019_08_12-12_20_14\\carData_track1.txt',"r")
     except FileNotFoundError:         
         print("file is not found")
     else:
@@ -327,10 +337,10 @@ def main():
     
     if (lane == 4):
         sections = checksection_4lane(list_x,list_z,list_t)
-        plot_map_4lane(list_x,list_z)
+        plot_map_4lane(list_x,list_z,sections)
     else:
         sections = checksection_8lane(list_x,list_z,list_t)
-        plot_map_8lane(list_x,list_z)
+        plot_map_8lane(list_x,list_z,sections)
     print(sections)
     save_data(list_x,list_z,list_v,list_t,list_distance_ahead,sections,lane)
 
