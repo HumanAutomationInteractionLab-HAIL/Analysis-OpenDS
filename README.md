@@ -6,12 +6,11 @@ Preprocessing, visualization and analysis is required for initial OpenDS data. H
 
 ## To do
 
-    1.Improve the visualization part in preprocessing (work in progress)
-    2.Modify the function in preprocessing to make it support any number of lane
-    3.Use command line arguments to input file path
-    4.Improve readability
-    5.README
-    6. ...
+    1.Modify the function in preprocessing to make it support any number of lane
+    2.Use command line arguments to input file path
+    3.Improve readability
+    4.README
+    5. ...
   
 
 ## Contributors
