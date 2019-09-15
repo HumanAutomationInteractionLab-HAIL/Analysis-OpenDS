@@ -11,6 +11,8 @@ Preprocessing, visualization and analysis is required for initial OpenDS data. H
     3.README
     4. ...
   
+## Usage
+python scripts/preprocessing.py carData_track1.txt
 
 ## Contributors
 
