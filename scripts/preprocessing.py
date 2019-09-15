@@ -8,6 +8,7 @@ Created on Fri Aug 23 16:50:27 2019
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+import sys
 
 
 
@@ -224,9 +225,9 @@ def plot_map_8lane(list_x,list_z,sections):
     plt.show()   
 
 
-def read_data():
+def read_data(path):
     try:
-        file=open('C:\\Users\\q4349\\Desktop\\827\\analyzerData\\analyzerData\\p2\\2019_08_12-12_26_49\\carData_track1.txt',"r")
+        file=open(path,"r")
     except FileNotFoundError:         
         print("file is not found")
     else:
@@ -352,8 +353,9 @@ def save_data(list_x,list_z,list_v,list_t,list_distance_ahead,sections,lane):
     return 0
 
 def main():
-    list_x,list_z,list_v,list_t,list_distance_ahead,lane = read_data()
-    
+    #usage: python preprocessing.py 
+    list_x,list_z,list_v,list_t,list_distance_ahead,lane = read_data(path = sys.argv[1])
+    #'C:\\Users\\q4349\\Desktop\\827\\analyzerData\\analyzerData\\p2\\2019_08_12-12_26_49\\carData_track1.txt'
     
     if (lane == 4):
         sections = checksection_4lane(list_x,list_z,list_t)
