@@ -12,8 +12,8 @@ import sys
 
 
 
-def checksection_4lane(list_x,list_z,list_t):
-
+def checksection(list_x,list_z,list_t,coordinates):
+    # coordinates_4 = [184.000,226.478,958.492,15.679,751.653,42.478]
     if (len(list_x) != len(list_z)): 
         return -1
 
@@ -21,7 +21,7 @@ def checksection_4lane(list_x,list_z,list_t):
 
     #section 1: traffic light
     for i in range(len(list_z)):
-        if (list_z[i] >= 184.0):            #start from z < 184.0
+        if (list_z[i] >= coordinates[0]):            #start from z < 184.0
             sections[1] = i
             break
         elif (i == len(list_z) - 1):        #if not find find the point
@@ -30,12 +30,12 @@ def checksection_4lane(list_x,list_z,list_t):
     turn_left = True    #is True if it turns left at the first corner
     #section 2: overtaking
     for i in range(sections[1],len(list_z)):
-        if (list_z[i] >= 226.478): #go straight
+        if (list_z[i] >= coordinates[1]): #go straight
             sections[2] = i
             turn_left = False
             
             for j in range(sections[2],len(list_z)):
-                if (list_z[j] >= 958.492):
+                if (list_z[j] >= coordinates[2]):
                     sections[3] = j
                     break
                 elif (j == len(list_z) - 1): #if not find find the point
@@ -43,11 +43,11 @@ def checksection_4lane(list_x,list_z,list_t):
                     print('1')
             
             break
-        elif (list_x[i] > 15.679):          #turn left at first corner
+        elif (list_x[i] > coordinates[3]):          #turn left at first corner
             sections[2] = i
 
             for j in range(sections[2],len(list_z)):
-                if (list_x[j] >= 751.653):
+                if (list_x[j] >= coordinates[4]):
                     sections[3] = j
                     break
                 elif (j == len(list_z) - 1): #if not find find the point
@@ -57,10 +57,10 @@ def checksection_4lane(list_x,list_z,list_t):
     #section 3: following
     if (turn_left): #turn left at the first corner
         for i in range(sections[3],len(list_z)):
-            if (list_z[i] >= 226.478): 
+            if (list_z[i] >= coordinates[1]):
                 sections[4] = i
                 for j in range(sections[4],len(list_z)):
-                    if (list_z[j] >= 958.492):
+                    if (list_z[j] >= coordinates[2]):
                         sections[5] = j
                         break
                     elif (j == len(list_z) - 1): #if not find find the point
@@ -72,10 +72,10 @@ def checksection_4lane(list_x,list_z,list_t):
             
     else:   #go straight at the first corner
         for i in range(sections[3],len(list_z)):
-            if (list_x[i] >= 15.679):
+            if (list_x[i] >= coordinates[3]):
                 sections[4] = i
                 for j in range(sections[4],len(list_z)):
-                    if(list_x[j] >= 751.653):
+                    if(list_x[j] >= coordinates[4]):
                         sections[5] = j
                         break
                     elif (j == len(list_z) - 1):
@@ -87,80 +87,9 @@ def checksection_4lane(list_x,list_z,list_t):
     return sections
 
 
-def checksection_8lane(list_x,list_z,list_t):
 
-    if (len(list_x) != len(list_z)): 
-        return -1
-
-    sections = [0,0,0,0,0,0] #starts and ends points
-
-    #section 1: traffic light
-    for i in range(len(list_z)):
-        if (list_z[i] >= 179.43): #start from z < 184.0
-            sections[1] = i
-            break
-        elif (i == len(list_z) - 1):            #if not find find the point
-            sections[1] = -1
-
-    turn_left = True                            #is True if it turns left at the first corner
-    #section 2: overtaking
-    for i in range(sections[1],len(list_z)):
-        if (list_z[i] >= 234.998): #go straight
-            sections[2] = i
-            turn_left = False
-            
-            for j in range(sections[2],len(list_z)):
-                if (list_z[j] >= 1272.637):
-                    sections[3] = j
-                    break
-                elif (j == len(list_z) - 1): 
-                    sections[3] = -1
-                
-            break
-        elif (list_x[i] >= 27.94):  #turn left at first corner
-            sections[2] = i
-
-            for j in range(sections[2],len(list_z)):
-                if (list_x[j] >= 1064.941):
-                    sections[3] = j
-                    break
-                elif (j == len(list_z) - 1): 
-                    sections[3] = -1
-            break
-    #section 3: following
-    if (turn_left): #turn left at the first corner
-        for i in range(sections[3],len(list_z)):
-            if (list_z[i] >= 234.998): 
-                sections[4] = i
-                for j in range(sections[4],len(list_z)):
-                    if (list_z[j] >= 1272.637):
-                        sections[5] = j
-                        break
-                    elif (j == len(list_z) - 1): 
-                        sections[5] = j
-                break
-            elif (i == len(list_z) - 1): 
-                sections[5] = -1
-
-    else:   #go straight at the first corner
-        for i in range(sections[3],len(list_z)):
-            if (list_x[i] >= 27.94):
-                sections[4] = i
-                for j in range(sections[4],len(list_z)):
-                    if(list_x[j] >= 1064.941):
-                        sections[5] = j
-                        break
-                    elif (j == len(list_z) - 1):
-                        sections[5] = j
-                break
-            elif (i == len(list_z) - 1): 
-                sections[5] = -1
-                   
-    return sections
-
-
-def plot_map_4lane(list_x,list_z,sections):
-    
+def plot_map(list_x,list_z,sections,coordinates,lane):
+    #coordinates_4 = [184.000,226.478,958.492,15.679,751.653,42.478]
     if (len(list_x) != len(list_z)):
         return -1
 
@@ -179,53 +108,21 @@ def plot_map_4lane(list_x,list_z,sections):
     ax.plot(list_z[sections[4]:sections[5]], list_x[sections[4]:sections[5]], label='Section 3: Following')
     plt.scatter(list_z[sections[5]:], list_x[sections[5]:], marker='.', lineWidth=0.1, edgecolor='none', color='blue')
     ax.plot(list_z[sections[5]:], list_x[sections[5]:], label='Movement Track', color='blue')
-    ax.plot(np.linspace(184,184,1000),np.linspace(-250,1200,1000),color='black')
-    ax.plot(np.linspace(226.478,226.478,1000),np.linspace(-250,1200,1000),color='black')
-    ax.plot(np.linspace(1000.96, 1000.96, 1000), np.linspace(-250, 1200, 1000), color='black')
-    ax.plot(np.linspace(958.492,958.492,1000),np.linspace(-250,1200,1000),color='black')
-    ax.plot(np.linspace(-800,1700,1000),np.linspace(15.679,15.679,1000),color='black')
-    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(-26.899, -26.899, 1000), color='black')
-    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(794.131, 794.131, 1000), color='black')
-    ax.plot(np.linspace(-800,1700,1000),np.linspace(751.653,751.653,1000),color='black')
-    plt.title('OpenDS Scene Planform and Movement Track of Vehicle--4 lanes')
+    ax.plot(np.linspace(coordinates[0],coordinates[0],1000),np.linspace(-250,1200,1000),color='black')
+    ax.plot(np.linspace(coordinates[1],coordinates[1],1000),np.linspace(-250,1200,1000),color='black')
+    ax.plot(np.linspace(coordinates[2]+coordinates[5],coordinates[2]+coordinates[5], 1000), np.linspace(-250, 1200, 1000), color='black')
+    ax.plot(np.linspace(coordinates[2],coordinates[2],1000),np.linspace(-250,1200,1000),color='black')
+    ax.plot(np.linspace(-800,1700,1000),np.linspace(coordinates[3],coordinates[3],1000),color='black')
+    ax.plot(np.linspace(-800,1700,1000), np.linspace(coordinates[3]-coordinates[5],coordinates[3]-coordinates[5], 1000), color='black')
+    ax.plot(np.linspace(-800,1700,1000), np.linspace(coordinates[4]+coordinates[5],coordinates[4]+coordinates[5], 1000), color='black')
+    ax.plot(np.linspace(-800,1700,1000),np.linspace(coordinates[4],coordinates[4],1000),color='black')
+    plt.title('OpenDS Scene Planform and Movement Track of Vehicle--' + str(lane) + ' lanes')
     plt.legend()
     plt.show()
             
 
-def plot_map_8lane(list_x,list_z,sections):
-    
-    if (len(list_x) != len(list_z)): 
-        return -1
-
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.set(xlim=[-800,1700],ylim=[-250,1200])
-    plt.scatter(list_z[sections[0]:sections[1]],list_x[sections[0]:sections[1]],marker='.',lineWidth = 0.1,edgecolor='none')
-    ax.plot(list_z[sections[0]:sections[1]],list_x[sections[0]:sections[1]], label='Section 1: Traffic Light')
-    plt.scatter(list_z[sections[1]:sections[2]], list_x[sections[1]:sections[2]], marker='.', lineWidth=0.1,edgecolor='none',color='blue')
-    ax.plot(list_z[sections[1]:sections[2]], list_x[sections[1]:sections[2]],color = 'blue')
-    plt.scatter(list_z[sections[2]:sections[3]], list_x[sections[2]:sections[3]], marker='.', lineWidth=0.1,edgecolor='none')
-    ax.plot(list_z[sections[2]:sections[3]], list_x[sections[2]:sections[3]], label = 'Section 2: Overtaking')
-    plt.scatter(list_z[sections[3]:sections[4]], list_x[sections[3]:sections[4]], marker='.', lineWidth=0.1,edgecolor='none',color='blue')
-    ax.plot(list_z[sections[3]:sections[4]], list_x[sections[3]:sections[4]], color = 'blue')
-    plt.scatter(list_z[sections[4]:sections[5]], list_x[sections[4]:sections[5]], marker='.', lineWidth=0.1,edgecolor='none')
-    ax.plot(list_z[sections[4]:sections[5]], list_x[sections[4]:sections[5]], label='Section 3: Following')
-    plt.scatter(list_z[sections[5]:], list_x[sections[5]:], marker='.', lineWidth=0.1,edgecolor='none',color='blue')
-    ax.plot(list_z[sections[5]:], list_x[sections[5]:], label='Movement Track',color = 'blue')
-    ax.plot(np.linspace(179.3,179.3,1000),np.linspace(-250,1200,1000),color='black')
-    ax.plot(np.linspace(234.998,234.998,1000),np.linspace(-250,1200,1000),color='black')
-    ax.plot(np.linspace(1272.637,1272.637,1000),np.linspace(-250,1200,1000),color='black')
-    ax.plot(np.linspace(1328.205, 1328.205, 1000), np.linspace(-250, 1200, 1000), color='black')
-    ax.plot(np.linspace(-800,1700,1000),np.linspace(27.94,27.94,1000),color='black')
-    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(-27.628, -27.628, 1000), color='black')
-    ax.plot(np.linspace(-800,1700,1000),np.linspace(1064.941,1064.941,1000),color='black')
-    ax.plot(np.linspace(-800, 1700, 1000), np.linspace(1120.509, 1120.509, 1000), color='black')
-    plt.title('OpenDS Scene Planform and Movement Track of Vehicle--8 lanes')
-    plt.legend()
-    plt.show()   
-
-
 def read_data(path):
+    lane = 0
     try:
         file=open(path,"r")
     except FileNotFoundError:         
@@ -258,7 +155,7 @@ def read_data(path):
             list_z.append(float(z))
             list_v.append(float(v))
             list_distance_ahead.append(float(distance_ahead))
-        file.close
+        file.close()
 
         return list_x,list_z,list_v,list_t,list_distance_ahead,lane
 
@@ -353,16 +250,18 @@ def save_data(list_x,list_z,list_v,list_t,list_distance_ahead,sections,lane):
     return 0
 
 def main():
-    #usage: python preprocessing.py 
+    #usage: python preprocessing.py
     list_x,list_z,list_v,list_t,list_distance_ahead,lane = read_data(path = sys.argv[1])
     #'C:\\Users\\q4349\\Desktop\\827\\analyzerData\\analyzerData\\p2\\2019_08_12-12_26_49\\carData_track1.txt'
-    
+    coordinates_4 = [184.000,226.478,958.492,15.679,751.653,42.478]
+    coordinates_8 = [179.43,234.998,1272.637,27.94,1064.941,55.568]
+    #
     if (lane == 4):
-        sections = checksection_4lane(list_x,list_z,list_t)
-        plot_map_4lane(list_x,list_z,sections)
+        sections = checksection(list_x,list_z,list_t,coordinates_4)
+        plot_map(list_x,list_z,sections,coordinates_4,lane)
     else:
-        sections = checksection_8lane(list_x,list_z,list_t)
-        plot_map_8lane(list_x,list_z,sections)
+        sections = checksection(list_x,list_z,list_t,coordinates_8)
+        plot_map(list_x,list_z,sections,coordinates_8,lane)
     print(sections)
     save_data(list_x,list_z,list_v,list_t,list_distance_ahead,sections,lane)
 
