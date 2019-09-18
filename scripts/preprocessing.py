@@ -11,6 +11,32 @@ import numpy as np
 import sys
 
 
+def read_coordinates(path,lane):
+    coordinates = []
+    try:
+        file = open(path, "r")
+    except FileNotFoundError:
+        print("file is not found")
+    else:
+        line = file.readline()
+        contents = file.readlines()
+        list_coordinates = []
+
+        for content in contents:
+            if content[-1] == '\n':
+                content = content[:-1]
+
+            if (int(content[0]) == int(lane)):
+                print('find Coordinates Data!')
+                coordinates = content.split(',')
+                coordinates = coordinates[1:]
+
+        for i in range(len(coordinates)):
+            coordinates[i] = float(coordinates[i])
+
+        file.close()
+    return coordinates
+
 
 def checksection(list_x,list_z,list_t,coordinates):
     # coordinates_4 = [184.000,226.478,958.492,15.679,751.653,42.478]
@@ -253,15 +279,14 @@ def main():
     #usage: python preprocessing.py
     list_x,list_z,list_v,list_t,list_distance_ahead,lane = read_data(path = sys.argv[1])
     #'C:\\Users\\q4349\\Desktop\\827\\analyzerData\\analyzerData\\p2\\2019_08_12-12_26_49\\carData_track1.txt'
-    coordinates_4 = [184.000,226.478,958.492,15.679,751.653,42.478]
-    coordinates_8 = [179.43,234.998,1272.637,27.94,1064.941,55.568]
-    #
+    coordinates = read_coordinates('coordinates.txt', lane)
+
     if (lane == 4):
-        sections = checksection(list_x,list_z,list_t,coordinates_4)
-        plot_map(list_x,list_z,sections,coordinates_4,lane)
+        sections = checksection(list_x,list_z,list_t,coordinates)
+        plot_map(list_x,list_z,sections,coordinates,lane)
     else:
-        sections = checksection(list_x,list_z,list_t,coordinates_8)
-        plot_map(list_x,list_z,sections,coordinates_8,lane)
+        sections = checksection(list_x,list_z,list_t,coordinates)
+        plot_map(list_x,list_z,sections,coordinates,lane)
     print(sections)
     save_data(list_x,list_z,list_v,list_t,list_distance_ahead,sections,lane)
 
