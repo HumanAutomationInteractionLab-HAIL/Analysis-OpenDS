@@ -6,7 +6,7 @@ Preprocessing, visualization and analysis is required for initial OpenDS data. H
 
 ## To do
 
-    1.README
+    1.A better README with examples
     2. ...
   
 ## Usage
