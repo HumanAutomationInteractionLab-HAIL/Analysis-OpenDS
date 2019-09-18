@@ -6,13 +6,13 @@ Preprocessing, visualization and analysis is required for initial OpenDS data. H
 
 ## To do
 
-    1.Improve the visualization part in preprocessing (work in progress)
-    2.Modify the function in preprocessing to make it support any number of lane
-    3.Use command line arguments to input file path
-    4.Improve readability
-    5.README
-    6. ...
+    1.README
+    2. ...
   
+## Usage
+python scripts/preprocessing.py carData_track1.txt
+
+PS:If you want to add a new scene to analyze, than modify coordinates.txt
 
 ## Contributors
 
