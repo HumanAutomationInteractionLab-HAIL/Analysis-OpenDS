@@ -14,6 +14,10 @@ python scripts/preprocessing.py carData_track1.txt
 
 PS:If you want to add a new scene to analyze, than modify coordinates.txt
 
+## OpenDS Scene Planform Generation
+An example of OpenDS Scene Planform by matplotlib.
+![image](https://github.com/unnc-idl-ucc/Analysis-OpenDS/blob/master/images/planform.png)
+
 ## Contributors
 
 
