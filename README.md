@@ -3,11 +3,6 @@ To analyze and visualize all stuff after experimental studies.
 <br>
 ## Motivation
 Preprocessing, visualization and analysis is required for initial OpenDS data. Hereby, we gathered the analysis codes of OpenDS data for futher usages and replications. 
-
-## To do
-
-    1.A better README with examples
-    2. ...
   
 ## Usage
 python scripts/preprocessing.py carData_track1.txt
@@ -16,7 +11,7 @@ PS:If you want to add a new scene to analyze, than modify coordinates.txt
 
 ## OpenDS Scene Planform Generation
 An example of OpenDS Scene Planform by matplotlib.
-![image](https://github.com/unnc-idl-ucc/Analysis-OpenDS/blob/master/images/planform.png)
+![image](https://github.com/unnc-idl-ucc/Analysis-OpenDS/blob/master/Examples/planform.png)
 
 ## Contributors
 
