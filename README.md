@@ -5,7 +5,7 @@ To analyze and visualize all stuff after experimental studies.
 Preprocessing, visualization and analysis is required for initial OpenDS data. Hereby, we gathered the analysis codes of OpenDS data for futher usages and replications. 
   
 ## Usage
-python scripts/preprocessing.py carData_track1.txt
+python scripts/preprocessing.py ../examples/input/carData_track1.txt
 
 PS:If you want to add a new scene to analyze, than modify coordinates.txt
 
