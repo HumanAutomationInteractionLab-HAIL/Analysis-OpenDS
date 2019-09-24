@@ -11,7 +11,7 @@ PS:If you want to add a new scene to analyze, than modify coordinates.txt
 
 ## OpenDS Scene Planform Generation
 An example of OpenDS Scene Planform by matplotlib.
-![image](https://github.com/unnc-idl-ucc/Analysis-OpenDS/blob/master/examples/planform.png)
+![image](https://github.com/unnc-idl-ucc/Analysis-OpenDS/blob/master/examples/output/planform.png)
 
 ## Contributors
 
