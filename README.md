@@ -5,7 +5,7 @@ To analyze and visualize all stuff after experimental studies.
 Preprocessing, visualization and analysis are required for initial OpenDS data. Hereby, we represent this analyze tool for OpenDS data.
   
 ## Usage
-python scripts/preprocessing.py ../examples/input/carData_track1.txt
+```python scripts/preprocessing.py ../examples/input/carData_track1.txt```
 
 PS:If you want to add a new scene to analyze, than modify coordinates.txt
 
