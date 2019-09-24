@@ -2,7 +2,7 @@
 To analyze and visualize all stuff after experimental studies.
 <br>
 ## Motivation
-Preprocessing, visualization and analysis is required for initial OpenDS data. Hereby, we gathered the analysis codes of OpenDS data for futher usages and replications. 
+Preprocessing, visualization and analysis are required for initial OpenDS data. Hereby, we represent this analyze tool for OpenDS data.
   
 ## Usage
 python scripts/preprocessing.py ../examples/input/carData_track1.txt
