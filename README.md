@@ -2,15 +2,21 @@
 To analyze and visualize all stuff after experimental studies.
 <br>
 ## Motivation
-OpenDS initial data is a series of vehicle data (e.g. Spped (m/s)). However, we need to split it into three sections and analyze each section's data. In addition, some situations might happen during the process of gathering the initial data(e.g. restart after some sections), these situations required checking movement track manually. Therefore, preprocessing, visualization and analysis are required for initial OpenDS data. Hereby, we represent this analyze tool for OpenDS data. 
+OpenDS initial data is a series of vehicle data (e.g. Spped (m/s)). However, we need to split it into three sections and analyze each section's data. In addition, some situations might happen during the process of data collection (e.g. restart after some sections), these situations required checking movement track manually. Therefore, preprocessing, visualization and analysis are required for initial OpenDS data. Hereby, we represent this analyze tool for OpenDS data. 
 
 ## Introduction
 The project aims to take OpenDS initial data as input, generate six txt files of position data and vehicle data. In addtion, it will generate an planform of OpenDS scene for manually checking. We uploaded an example file for preprocessing and visualization.
-  
+
+## Procedure
+1. Process the OpenDS initial data, split it into three sections by position data (when the car reach the boundary)
+2. Export three files consist of motion data and three files consists of position data.
+3. Plot the planform of OpenDS scene and it would show on the screnn for manually checking.
+4. Export planform.png
+
 ## Usage
 ```python scripts/preprocessing.py ../examples/input/carData_track1.txt```
 
-PS:If you want to add a new scene to analyze, than modify coordinates.txt
+PS:If you want to add a new scene to analyze, then modify coordinates.txt (format: coordinates of the corners from down to up, left to right)
 
 ## File Illustrations:
 Name | Type| Description
