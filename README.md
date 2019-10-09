@@ -37,7 +37,6 @@ An example of OpenDS Scene Planform by matplotlib.
 [Zhentao Huang](https://github.com/ZhentaoHuang), [Weikai Kong](https://github.com/WeikaiKong), mentored by [Xiangjun Peng](https://github.com/Shiangjun)
 
 
-TODO: Add more details in README
 </br>
 
 
